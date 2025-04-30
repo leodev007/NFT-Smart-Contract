@@ -264,6 +264,38 @@ describe('NFT', () => {
         });
 
     });
+    it('collection owner should be able to change owner', async () => {
+        const dataBefore = await nftCollection.getCollectionData();
+        const newOwner = randomAddress(0);
+
+        expect(dataBefore.owner).toEqualAddress(deployer.address);
+        const res = await nftCollection.sendChangeOwner(deployer.getSender(), newOwner);
+
+        expect(res.transactions).toHaveTransaction({
+            on: nftCollection.address,
+            op: Op.change_owner,
+            aborted: false
+        });
+
+        const dataAfter = await nftCollection.getCollectionData();
+
+        expect(dataAfter.owner).toEqualAddress(newOwner);
+    });
+    it('non owner should not be able to change owner', async () => {
+        const dataBefore = await nftCollection.getCollectionData();
+        const newOwner = randomAddress(0);
+
+        expect(dataBefore.owner).toEqualAddress(deployer.address);
+        const res = await nftCollection.sendChangeOwner(blockchain.sender(newOwner), newOwner);
+
+        expect(res.transactions).toHaveTransaction({
+            on: nftCollection.address,
+            from: newOwner,
+            op: Op.change_owner,
+            aborted: true,
+            exitCode: Errors.invalid_sender
+        });
+    });
     it('should be able to re-init item on failure', async () => {
         const dataBefore = await nftCollection.getCollectionData();
         // Sending deploy message with insufficient TON forward.
