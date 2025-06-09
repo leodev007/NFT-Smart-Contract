@@ -1,5 +1,21 @@
 # Fungible, Non-Fungible, Semi-Fungible Tokens Smart Contracts
 
+## Structure
+
+ft/ - Jetton (Fungible Token) smart contract and build.
+
+misc/ - forward-fee-calc.fc
+
+nft/ - NFT smart contract and build.
+
+sandbox_tests/ - Jetton Sandbox (Blueprint) tests.
+
+scripts/ - Jetton Sandbox (Blueprint) deploy scripts.
+
+wrappers/ - Jetton Sandbox (Blueprint) JS wrappers.
+
+stdlib.fc
+
 ## NFT (Non-Fungible tokens) in `nft` folder
 
 Basic implementation of smart contracts for NFT tokens and NFT collections in accordance with the [Standard](https://github.com/ton-blockchain/TIPs/issues/62).
