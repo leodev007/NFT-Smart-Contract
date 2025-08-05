@@ -13,7 +13,3 @@ It is preferable to use an editable collection in case if you decide to change c
 Also repo contains an example of a simple marketplace smart contract `nft-marketplace` and a smart contract for selling NFT for a fixed price for Toncoins `nft-sale`.
 
 In a real product, marketplace and sale smart contracts are likely to be more sophisticated.
-
-# Compile
-
-Compiled contracts are in `build/` folders. Compiled by [func-0.3.0](https://github.com/ton-blockchain/ton/releases/tag/func-0.3.0).
